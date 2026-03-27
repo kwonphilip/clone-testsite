@@ -21,7 +21,7 @@ export const treatments = [
     name: 'Power Signature Facial',
     desc: 'The Power Signature Facial includes more passes and delivers more energy below the skin\'s surface to correct and prevent breakouts, calm redness and rosacea, break up hyperpigmentation and stimulate collagen production for more rapid results.',
     price: '$550',
-    firstPrice: null,
+    firstPrice: '$75',
   },
   {
     name: 'Power Resurfacing Facial',
@@ -46,5 +46,17 @@ export const treatments = [
     desc: 'A gentle chemical peel that tightens, brightens and firms skin. The formula combines liposomal growth factors and a blend of acids to stimulate natural regeneration, boost hydration, and provide antioxidant benefits — targeting hyperpigmentation, fine lines and wrinkles without the peeling typically associated with intensive treatments.',
     price: '$250',
     firstPrice: '$100',
+  },
+  {
+    name: 'SkinTox',
+    desc: 'A microdosed neuromodulator treatment delivered via a microchannel stamping device with ultra-fine, 24k gold-plated needles to improve texture, refine pores, balance oil production, soften fine lines and reduce redness. Available as a standalone treatment or add-on.',
+    price: '$250',
+    firstPrice: null,
+  },
+  {
+    name: 'Wrinkle Relaxer',
+    desc: 'Smooth fine lines and prevent deeper wrinkles on the upper face — including frown lines between the brows, forehead lines and crow\'s feet — using Botox or Xeomin neuromodulator injections that target the facial muscles responsible for expression lines.',
+    price: 'From $10/unit',
+    firstPrice: null,
   },
 ];

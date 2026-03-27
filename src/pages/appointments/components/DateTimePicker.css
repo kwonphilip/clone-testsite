@@ -23,16 +23,17 @@
 .dtp__calendar {
   display: flex;
   flex-direction: column;
-  /* Gap between consecutive month sections */
-  gap: 2rem;
+  gap: 3px; /* Tight gap between week rows so they read as a cohesive grid */
 }
 
-/* ── MONTH SECTION ──────────────────────────────────────────────────────── */
+/* ── MONTH NAVIGATION ───────────────────────────────────────────────────── */
 
-.dtp__month {
+/* Row containing the ← Previous, month label, and Next → button */
+.dtp__nav {
   display: flex;
-  flex-direction: column;
-  gap: 3px; /* Tight gap between week rows to look like a cohesive grid */
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
 .dtp__month-label {
@@ -40,10 +41,39 @@
   font-size: 1.3rem;
   font-weight: 500;
   color: var(--color-text);
-  margin-bottom: 0.6rem;
-  /* Thin decorative underline to visually separate the label from the grid */
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--color-border-light);
+  text-align: center;
+  /* flex-grow so the label centers between the two fixed-size buttons */
+  flex: 1;
+}
+
+/* ← / → navigation buttons */
+.dtp__nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.dtp__nav-btn:not(:disabled):hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-xlight);
+  color: var(--color-primary-dark);
+}
+
+/* Disabled state: previous button when on the current month,
+   next button when at the maximum month ahead */
+.dtp__nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 /* ── WEEK ROWS ──────────────────────────────────────────────────────────── */
@@ -128,6 +158,18 @@
   border-style: dashed;
 }
 
+/* Past dates (before tomorrow): visible but not bookable */
+.dtp__date-btn--past {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Today: a subtle ring to orient the user within the month */
+.dtp__date-btn--today:not(.dtp__date-btn--selected) {
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 2px var(--color-primary-xlight);
+}
+
 /* The large date number inside each cell */
 .dtp__date-num {
   font-family: var(--font-heading);
@@ -144,14 +186,6 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-text-light);
-}
-
-/* ── LOAD MORE ──────────────────────────────────────────────────────────── */
-
-.dtp__load-more {
-  margin-top: 1.25rem;
-  display: flex;
-  justify-content: flex-start;
 }
 
 /* ── TIME SLOT SECTION ──────────────────────────────────────────────────── */

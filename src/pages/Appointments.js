@@ -24,7 +24,7 @@
  *   Rendered at /appointments via React Router (configured in App.js).
  */
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback } from 'react';
 
 // ── Sub-components ─────────────────────────────────────────────────────────
 import StepCard           from './appointments/components/StepCard';
@@ -35,13 +35,9 @@ import DateTimePicker     from './appointments/components/DateTimePicker';
 import AppointmentSidebar from './appointments/components/AppointmentSidebar';
 import SuccessScreen      from './appointments/components/SuccessScreen';
 
-// ── Helpers ────────────────────────────────────────────────────────────────
-import { generateDates } from './appointments/helpers/dateHelpers';
-
 // ── Constants ──────────────────────────────────────────────────────────────
-import { INITIAL_FORM }                          from './appointments/constants/treatments';
-import { INITIAL_DAYS, LOAD_MORE_DAYS, MAX_DAYS,
-         DAY_NAMES, MONTH_NAMES }                from './appointments/constants/schedule';
+import { INITIAL_FORM }          from './appointments/constants/treatments';
+import { DAY_NAMES, MONTH_NAMES } from './appointments/constants/schedule';
 
 import './Appointments.css';
 
@@ -60,9 +56,6 @@ export default function Appointments() {
   /** Set of treatment names the client has checked in Step 3. */
   const [selectedTreatments, setSelectedTreatments] = useState(new Set());
 
-  /** How many future days are currently shown in the date picker. */
-  const [daysVisible, setDaysVisible] = useState(INITIAL_DAYS);
-
   /** The calendar date the client has selected, or null. */
   const [selectedDate, setSelectedDate] = useState(null);
 
@@ -71,21 +64,6 @@ export default function Appointments() {
 
   /** Whether the form has been submitted (shows SuccessScreen when true). */
   const [submitted, setSubmitted] = useState(false);
-
-  // ── Derived values ─────────────────────────────────────────────────────
-
-  /**
-   * Generate only the dates currently in view.
-   * Memoized so generateDates() only reruns when daysVisible changes —
-   * not on every render caused by unrelated state updates.
-   */
-  const visibleDates = useMemo(
-    () => generateDates(daysVisible),
-    [daysVisible]
-  );
-
-  /** True when there are still more dates available to load. */
-  const canLoadMore = daysVisible < MAX_DAYS;
 
   // ── Event handlers ─────────────────────────────────────────────────────
 
@@ -119,14 +97,6 @@ export default function Appointments() {
   const handleDateSelect = (date) => {
     setSelectedDate(date);
     setSelectedTime(null);
-  };
-
-  /**
-   * Reveals more dates in the calendar, up to MAX_DAYS (12 months).
-   * Each click adds LOAD_MORE_DAYS (2 weeks) to the visible range.
-   */
-  const handleLoadMore = () => {
-    setDaysVisible(prev => Math.min(prev + LOAD_MORE_DAYS, MAX_DAYS));
   };
 
   /**
@@ -172,7 +142,6 @@ export default function Appointments() {
     setCustomerType('new');
     setForm(INITIAL_FORM);
     setSelectedTreatments(new Set());
-    setDaysVisible(INITIAL_DAYS);
     setSelectedDate(null);
     setSelectedTime(null);
     setSubmitted(false);
@@ -250,13 +219,10 @@ export default function Appointments() {
             >
               {/* DateTimePicker manages its own padding, so no .appt-form-body wrapper */}
               <DateTimePicker
-                dates={visibleDates}
-                canLoadMore={canLoadMore}
                 selectedDate={selectedDate}
                 selectedTime={selectedTime}
                 onDateSelect={handleDateSelect}
                 onTimeSelect={setSelectedTime}
-                onLoadMore={handleLoadMore}
               />
             </StepCard>
 

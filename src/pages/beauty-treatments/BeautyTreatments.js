@@ -1,0 +1,110 @@
+import { Link } from 'react-router-dom';
+import { treatments } from './treatments';
+import '../Treatments.css';
+
+const treatments = [
+  {
+    name: 'Full Makeup Application',
+    price: 'From $95',
+    duration: '60–90 min',
+    desc: 'Professional makeup artistry for any occasion — from everyday natural looks to editorial, bridal, and special event glam. Includes a pre-service skin consultation.',
+    tags: ['Bridal', 'Special Event', 'Natural Look'],
+  },
+  {
+    name: 'Brow Shaping & Tinting',
+    price: 'From $55',
+    duration: '30–45 min',
+    desc: 'Precision brow shaping using a combination of threading, waxing, and/or tweezing, followed by a semi-permanent tint customized to enhance your natural coloring.',
+    tags: ['Brow Definition', 'Tinting', 'Framing'],
+  },
+  {
+    name: 'Lash Lift & Tint',
+    price: 'From $85',
+    duration: '60 min',
+    desc: 'A semi-permanent curl treatment that lifts your natural lashes from the root, paired with a lash tint for depth and definition. Results last 6–8 weeks.',
+    tags: ['No Extensions', 'Low Maintenance', 'Eye-Opening'],
+  },
+  {
+    name: 'Classic Lash Extensions',
+    price: 'From $145',
+    duration: '90–120 min',
+    desc: 'Individual synthetic lash extensions applied one-to-one to your natural lashes for a mascara-free, effortlessly polished look. Fills recommended every 2–3 weeks.',
+    tags: ['Natural Look', 'Semi-Permanent', 'Low Maintenance'],
+  },
+  {
+    name: 'Volume Lash Extensions',
+    price: 'From $175',
+    duration: '120–150 min',
+    desc: 'Russian-technique fans of ultra-fine lashes applied to each natural lash for dramatic volume and fullness. Perfect for those who love a bolder, more expressive eye.',
+    tags: ['Dramatic', 'Fuller Look', 'Semi-Permanent'],
+  },
+  {
+    name: 'Lip Blush (PMU)',
+    price: 'From $395',
+    duration: '2–2.5 hrs',
+    desc: 'A form of permanent makeup that implants soft, blush-toned pigment into the lips to enhance shape, add color, and create the appearance of fuller, defined lips. Includes a touch-up session.',
+    tags: ['Permanent Makeup', 'Lip Enhancement', 'Long-Lasting'],
+  },
+  {
+    name: 'Microblading',
+    price: 'From $450',
+    duration: '2–2.5 hrs',
+    desc: 'A semi-permanent brow technique using a fine, hair-stroke method to create realistic, natural-looking brows. Ideal for sparse or over-plucked brows. Includes a 6-week touch-up.',
+    tags: ['Permanent Makeup', 'Natural Brows', 'Semi-Permanent'],
+  },
+  {
+    name: 'Waxing Services',
+    price: 'From $18',
+    duration: '15–45 min',
+    desc: 'Professional facial and body waxing services including brows, upper lip, chin, underarms, arms, legs, and bikini area. We use premium hard and soft wax formulations.',
+    tags: ['Face Waxing', 'Body Waxing', 'Smooth Skin'],
+  },
+];
+
+export default function BeautyTreatments() {
+  return (
+    <div>
+      {/* Hero */}
+      <div className="page-hero">
+        <p className="page-hero__label">Our Services</p>
+        <h1 className="page-hero__title">Beauty Treatments</h1>
+        <p className="page-hero__desc">
+          Precision artistry and enhancing techniques that celebrate your natural
+          beauty and elevate your everyday look.
+        </p>
+      </div>
+
+      {/* Treatments Grid */}
+      <section className="section">
+        <div className="container">
+          <div className="treatments-grid">
+            {treatments.map((t) => (
+              <div key={t.name} className="treatment-card">
+                <div className="treatment-card__top">
+                  <h2 className="treatment-card__name">{t.name}</h2>
+                  <span className="treatment-card__price">{t.price}</span>
+                </div>
+                <p className="treatment-card__duration">⏱ {t.duration}</p>
+                <p className="treatment-card__desc">{t.desc}</p>
+                <div className="treatment-card__tags">
+                  {t.tags.map((tag) => (
+                    <span key={tag} className="treatment-tag">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Booking CTA */}
+          <div className="treatments-cta">
+            <h3>Express your beauty.</h3>
+            <p>Book a beauty consultation and let our artists create your perfect look.</p>
+            <Link to="/appointments" className="btn btn--primary">
+              Book a Beauty Treatment
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

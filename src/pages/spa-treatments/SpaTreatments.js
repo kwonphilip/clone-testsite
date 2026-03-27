@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import './Treatments.css';
+import { treatments } from './treatments';
+import '../Treatments.css';
 
 const treatments = [
   {

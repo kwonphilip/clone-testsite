@@ -2,10 +2,10 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Header from './components/Header';
 import Home from './pages/Home';
-import SkinTreatments from './pages/SkinTreatments';
-import BeautyTreatments from './pages/BeautyTreatments';
-import SpaTreatments from './pages/SpaTreatments';
-import Appointments from './pages/Appointments';
+import SkinTreatments from './pages/skin-treatments/SkinTreatments';
+import BeautyTreatments from './pages/beauty-treatments/BeautyTreatments';
+import SpaTreatments from './pages/spa-treatments/SpaTreatments';
+import Appointments from './pages/appointments/Appointments';
 import './App.css';
 
 function ScrollToTop() {

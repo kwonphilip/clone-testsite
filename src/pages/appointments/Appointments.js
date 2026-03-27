@@ -9,8 +9,8 @@
  *   4. Render the multi-step form layout using sub-components.
  *
  * It intentionally contains NO business logic or rendering detail — those
- * are delegated to the focused components in ./appointments/components/.
- * The helpers in ./appointments/helpers/ and constants in ./appointments/constants/
+ * are delegated to the focused components in ./components/.
+ * The helpers in ./helpers/ and constants in ./constants/
  * handle all data transformation and configuration.
  *
  * ── FORM STEPS ───────────────────────────────────────────────────────────────
@@ -27,17 +27,17 @@
 import { useState, useCallback } from 'react';
 
 // ── Sub-components ─────────────────────────────────────────────────────────
-import StepCard           from './appointments/components/StepCard';
-import CustomerTypeToggle from './appointments/components/CustomerTypeToggle';
-import PersonalInfoForm   from './appointments/components/PersonalInfoForm';
-import TreatmentChecklist from './appointments/components/TreatmentChecklist';
-import DateTimePicker     from './appointments/components/DateTimePicker';
-import AppointmentSidebar from './appointments/components/AppointmentSidebar';
-import SuccessScreen      from './appointments/components/SuccessScreen';
+import StepCard           from './components/StepCard';
+import CustomerTypeToggle from './components/CustomerTypeToggle';
+import PersonalInfoForm   from './components/PersonalInfoForm';
+import TreatmentChecklist from './components/TreatmentChecklist';
+import DateTimePicker     from './components/DateTimePicker';
+import AppointmentSidebar from './components/AppointmentSidebar';
+import SuccessScreen      from './components/SuccessScreen';
 
 // ── Constants ──────────────────────────────────────────────────────────────
-import { INITIAL_FORM }          from './appointments/constants/treatments';
-import { DAY_NAMES, MONTH_NAMES } from './appointments/constants/schedule';
+import { INITIAL_FORM }           from './constants/treatments';
+import { DAY_NAMES, MONTH_NAMES } from './constants/schedule';
 
 import './Appointments.css';
 

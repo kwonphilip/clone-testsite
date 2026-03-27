@@ -1,0 +1,266 @@
+/* ── DateTimePicker.css ──────────────────────────────────────────────────────
+ *
+ * Styles for the calendar date picker and time-slot grid in Step 4
+ * of the appointment form.
+ *
+ * Naming convention: "dtp__" prefix (DateTimePicker) keeps these class names
+ * scoped and makes it immediately clear which component a rule belongs to.
+ * ────────────────────────────────────────────────────────────────────────── */
+
+/* ── OUTER WRAPPER ──────────────────────────────────────────────────────── */
+
+.dtp {
+  /* Padding mirrors .appt-form-body so the calendar visually aligns
+     with other step content inside the card. */
+  padding: 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── CALENDAR ───────────────────────────────────────────────────────────── */
+
+.dtp__calendar {
+  display: flex;
+  flex-direction: column;
+  /* Gap between consecutive month sections */
+  gap: 2rem;
+}
+
+/* ── MONTH SECTION ──────────────────────────────────────────────────────── */
+
+.dtp__month {
+  display: flex;
+  flex-direction: column;
+  gap: 3px; /* Tight gap between week rows to look like a cohesive grid */
+}
+
+.dtp__month-label {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 0.6rem;
+  /* Thin decorative underline to visually separate the label from the grid */
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+/* ── WEEK ROWS ──────────────────────────────────────────────────────────── */
+
+/* Every week row (header and data) uses a 7-column equal grid.
+   Using `repeat(7, 1fr)` ensures cells stay evenly spaced regardless
+   of the container width — no fixed pixel widths needed. */
+.dtp__week-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+
+/* Column header row (Sun Mon Tue Wed Thu Fri Sat) */
+.dtp__week-row--header {
+  margin-bottom: 4px;
+}
+
+.dtp__col-header {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  text-align: center;
+  padding: 4px 0;
+}
+
+/* ── DATE CELLS ─────────────────────────────────────────────────────────── */
+
+/* Base cell — shared by both empty placeholders and date buttons */
+.dtp__cell {
+  /* min-height keeps cells from collapsing when content is short.
+     Aspect-ratio would be ideal but min-height is safer across browsers. */
+  min-height: 52px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+/* Empty placeholder cell — invisible, just holds grid space */
+.dtp__cell--empty {
+  background: transparent;
+  pointer-events: none;
+}
+
+/* Date button — all the interactive styling lives here */
+.dtp__date-btn {
+  border: 1.5px solid var(--color-border);
+  background: var(--color-bg);
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 4px 2px;
+}
+
+.dtp__date-btn:not(:disabled):hover {
+  border-color: var(--color-primary-light);
+  background: var(--color-primary-xlight);
+  /* Subtle lift on hover matches the overall site interaction language */
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-xs);
+}
+
+/* Selected state: filled with primary color */
+.dtp__date-btn--selected {
+  border-color: var(--color-primary) !important;
+  background: var(--color-primary) !important;
+  box-shadow: 0 2px 8px rgba(192, 128, 144, 0.35);
+}
+
+.dtp__date-btn--selected .dtp__date-num {
+  color: white;
+}
+
+/* Closed state (Sundays): present in the grid but non-interactive */
+.dtp__date-btn--closed {
+  opacity: 0.35;
+  cursor: not-allowed;
+  border-style: dashed;
+}
+
+/* The large date number inside each cell */
+.dtp__date-num {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+/* Small "Closed" text beneath the date number on Sundays */
+.dtp__closed-label {
+  font-size: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+}
+
+/* ── LOAD MORE ──────────────────────────────────────────────────────────── */
+
+.dtp__load-more {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* ── TIME SLOT SECTION ──────────────────────────────────────────────────── */
+
+.dtp__time-section {
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  /* Dashed separator distinguishes the time section from the calendar above */
+  border-top: 1px dashed var(--color-border-light);
+}
+
+.dtp__time-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.dtp__no-slots {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Responsive grid: fills available width with ~100px min columns */
+.dtp__slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 0.5rem;
+}
+
+/* ── TIME SLOT BUTTONS ──────────────────────────────────────────────────── */
+
+.dtp__slot-btn {
+  padding: 0.55rem 0.4rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border);
+  background: white;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.dtp__slot-btn:not(:disabled):hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-xlight);
+  color: var(--color-primary-dark);
+}
+
+/* Selected time slot */
+.dtp__slot-btn--selected {
+  border-color: var(--color-primary) !important;
+  background: var(--color-primary) !important;
+  color: white !important;
+}
+
+/* Booked / unavailable time slot */
+.dtp__slot-btn--booked {
+  opacity: 0.4;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  text-decoration-color: var(--color-text-light);
+}
+
+/* Small "Booked" label below the time in unavailable slots */
+.dtp__booked-label {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .dtp {
+    padding: 1.25rem;
+  }
+
+  /* On small screens, compress the date cells so all 7 fit in the viewport */
+  .dtp__cell {
+    min-height: 44px;
+  }
+
+  .dtp__date-num {
+    font-size: 0.95rem;
+  }
+
+  .dtp__col-header {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* 3 columns fit more naturally on very small screens */
+  .dtp__slots-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .dtp__cell {
+    min-height: 40px;
+  }
+}

@@ -1,0 +1,443 @@
+/* ── Appointments.css ────────────────────────────────────────────────────────
+ *
+ * Page-level styles for the Appointments booking flow.
+ *
+ * Scope: layout, card chrome, form fields, sidebar, and success screen.
+ * Date/time picker styles live in DateTimePicker.css (co-located with
+ * the DateTimePicker component) to keep related styles together.
+ * ────────────────────────────────────────────────────────────────────────── */
+
+/* ── TWO-COLUMN PAGE LAYOUT ─────────────────────────────────────────────── */
+
+.appt-layout {
+  display: grid;
+  /* Main form takes remaining space; sidebar has a fixed comfortable width */
+  grid-template-columns: 1fr 320px;
+  gap: 2.5rem;
+  align-items: start; /* Sidebar and form both start from the top */
+}
+
+/* ── STEP FORM WRAPPER ──────────────────────────────────────────────────── */
+
+.appt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Breathing room between each step card */
+}
+
+/* ── STEP CARD ──────────────────────────────────────────────────────────── */
+
+/* The outer card shell — contains the header and child content.
+   overflow:hidden ensures child elements respect the border-radius. */
+.appt-card {
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-xs);
+  overflow: hidden;
+}
+
+/* Card header section: step number + title + optional subtitle.
+   Separated from the body with a bottom border for visual clarity. */
+.appt-card__header {
+  padding: 1.75rem 2rem 1.25rem;
+  border-bottom: 1px solid var(--color-border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Step indicator label (e.g. "01", "02") */
+.appt-step {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.appt-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.appt-card__subtitle {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+}
+
+/* ── FORM BODY ──────────────────────────────────────────────────────────── */
+
+/* Generic padding wrapper used inside step cards where content doesn't
+   need its own layout (e.g. the notes step, the personal info form). */
+.appt-form-body {
+  padding: 1.75rem 2rem;
+}
+
+/* Info callout shown at the top of the returning-client lookup form */
+.appt-returning-note {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-bg-accent);
+  border-radius: var(--radius-sm);
+  /* Left border accent draws attention without being visually heavy */
+  border-left: 3px solid var(--color-accent);
+}
+
+/* ── CUSTOMER TYPE TOGGLE ───────────────────────────────────────────────── */
+
+.customer-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1.75rem 2rem;
+}
+
+.customer-toggle__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-border);
+  background: var(--color-bg);
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: left;
+}
+
+.customer-toggle__btn:hover {
+  border-color: var(--color-primary-light);
+  background: var(--color-primary-xlight);
+}
+
+/* Active state: border and background confirm the current selection */
+.customer-toggle__btn--active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-xlight);
+}
+
+.customer-toggle__icon {
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.customer-toggle__label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.customer-toggle__desc {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* ── TREATMENTS CHECKLIST ───────────────────────────────────────────────── */
+
+/* Outer wrapper: stacks category groups vertically with no gap —
+   borders on each group create natural separation instead. */
+.treatments-checklist {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Each category section (Skin / Beauty / Spa) */
+.checklist-group {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.checklist-group:last-child {
+  border-bottom: none;
+}
+
+.checklist-group__title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+/* Two-column grid so each category shows ~4 items per row */
+.checklist-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s ease;
+}
+
+.checklist-item:hover {
+  background: var(--color-primary-xlight);
+}
+
+.checklist-item--checked {
+  background: var(--color-primary-xlight);
+}
+
+/* Visually hidden — the native input is kept for accessibility only */
+.checklist-item__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Custom styled checkbox box */
+.checklist-item__box {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1.5px solid var(--color-border);
+  background: white;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  color: white;
+  transition: var(--transition-fast);
+}
+
+.checklist-item--checked .checklist-item__box {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.checklist-item__label {
+  font-size: 0.875rem;
+  color: var(--color-text);
+}
+
+/* ── BOOKING SUMMARY (Step 5) ───────────────────────────────────────────── */
+
+/* Shows a live preview of the client's selections before submitting */
+.appt-summary {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.appt-summary__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  padding: 0.75rem 1rem;
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-light);
+}
+
+.appt-summary__item strong {
+  color: var(--color-text);
+}
+
+.appt-summary__icon {
+  flex-shrink: 0;
+  font-size: 0.95rem;
+}
+
+/* Submit button: full-width to emphasize it as the primary action */
+.appt-submit-btn {
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.appt-disclaimer {
+  font-size: 0.78rem;
+  color: var(--color-text-light);
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ── SIDEBAR ────────────────────────────────────────────────────────────── */
+
+.appt-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  /* Sticky: sidebar stays in view as the user scrolls through the form */
+  position: sticky;
+  top: calc(var(--header-height) + 1.5rem);
+}
+
+.appt-sidebar__card {
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-xs);
+  padding: 1.5rem;
+}
+
+/* Gradient variant used for the first-time client perk callout */
+.appt-sidebar__card--note {
+  background: linear-gradient(135deg, var(--color-primary-xlight), var(--color-bg-alt));
+  border-color: var(--color-primary-light);
+}
+
+.appt-sidebar__title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+/* Icon + text row for contact details */
+.appt-sidebar__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.appt-sidebar__item:last-child {
+  margin-bottom: 0;
+}
+
+.appt-sidebar__item a {
+  color: var(--color-primary-dark);
+}
+
+.appt-sidebar__item a:hover {
+  text-decoration: underline;
+}
+
+.appt-sidebar__icon {
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+/* Key–value rows for the hours list */
+.appt-sidebar__hours-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.appt-sidebar__hours-row:last-child {
+  border-bottom: none;
+}
+
+.appt-sidebar__note-text {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  font-style: italic;
+}
+
+/* ── SUCCESS SCREEN ─────────────────────────────────────────────────────── */
+
+.appt-success {
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem var(--content-padding);
+  background: linear-gradient(135deg, var(--color-primary-xlight), var(--color-bg-alt));
+}
+
+/* Animated ornament — pulses gently to celebrate the submission */
+.appt-success__icon {
+  font-size: 3rem;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  animation: successPulse 2s ease-in-out infinite;
+}
+
+@keyframes successPulse {
+  0%, 100% { transform: scale(1);    opacity: 1;   }
+  50%       { transform: scale(1.15); opacity: 0.8; }
+}
+
+.appt-success__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.appt-success__desc {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  max-width: 480px;
+  line-height: 1.75;
+  margin-bottom: 0.5rem;
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  /* On tablet, collapse to single-column with sidebar below the form */
+  .appt-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* Sidebar becomes a horizontal row of cards on tablet */
+  .appt-sidebar {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  /* Customer type buttons stack vertically on small phones */
+  .customer-toggle {
+    grid-template-columns: 1fr;
+  }
+
+  /* Treatment checklist: one column instead of two */
+  .checklist-items {
+    grid-template-columns: 1fr;
+  }
+
+  /* Sidebar cards stack back to single column */
+  .appt-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  /* Reduce card padding on small screens to recover horizontal space */
+  .appt-card__header,
+  .appt-form-body {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .checklist-group {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}

@@ -21,17 +21,20 @@ export default function SkinTreatments() {
           <div className="treatments-grid">
             {treatments.map((t) => (
               <div key={t.name} className="treatment-card">
+                {/* First-visit price badge — only shown when available */}
+                {t.firstPrice && (
+                  <span className="treatment-card__first-badge">
+                    First facial {t.firstPrice}
+                  </span>
+                )}
                 <div className="treatment-card__top">
                   <h2 className="treatment-card__name">{t.name}</h2>
                   <span className="treatment-card__price">{t.price}</span>
                 </div>
-                <p className="treatment-card__duration">⏱ {t.duration}</p>
                 <p className="treatment-card__desc">{t.desc}</p>
-                <div className="treatment-card__tags">
-                  {t.tags.map((tag) => (
-                    <span key={tag} className="treatment-tag">{tag}</span>
-                  ))}
-                </div>
+                <Link to="/appointments" className="treatment-card__cta">
+                  Book now →
+                </Link>
               </div>
             ))}
           </div>

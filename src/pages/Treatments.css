@@ -23,6 +23,37 @@
   border-color: var(--color-primary-light);
 }
 
+/* First-visit promotional badge — shown at the top of the card when available */
+.treatment-card__first-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary-dark);
+  background: var(--color-primary-xlight);
+  border: 1px solid var(--color-primary-light);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.85rem;
+  align-self: flex-start;
+}
+
+/* Per-card booking link — sits at the bottom of each card */
+.treatment-card__cta {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--color-primary-dark);
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+
+.treatment-card__cta:hover {
+  color: var(--color-primary);
+}
+
 .treatment-card__top {
   display: flex;
   justify-content: space-between;

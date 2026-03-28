@@ -3,6 +3,7 @@ import heroImg from '../images/hero-image.jpg.jpg';
 import skinImg from '../images/home-skin.jpg';
 import beautyImg from '../images/home-beauty.jpg';
 import spaImg from '../images/home-spa.jpg';
+import philosophyImg from '../images/philosophy-section.jpg';
 import './Home.css';
 
 const services = [
@@ -99,10 +100,8 @@ export default function Home() {
               Start Your Journey
             </Link>
           </div>
-          <div className="intro__visual" aria-hidden="true">
-            <div className="intro__circle intro__circle--1" />
-            <div className="intro__circle intro__circle--2" />
-            <div className="intro__ornament">✦</div>
+          <div className="intro__visual">
+            <img src={philosophyImg} alt="" className="intro__photo" />
             <div className="intro__stat">
               <span className="intro__stat-num">1,200+</span>
               <span className="intro__stat-label">Happy Clients</span>

@@ -6,7 +6,6 @@ const navLinks = [
   { to: '/', label: 'Home', exact: true },
   { to: '/skin-treatments', label: 'Skin' },
   { to: '/beauty-treatments', label: 'Beauty' },
-  { to: '/spa-treatments', label: 'Spa' },
 ];
 
 export default function Header() {

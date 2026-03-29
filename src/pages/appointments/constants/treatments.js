@@ -9,7 +9,6 @@
 
 import { treatments as skinTreatments }    from '../../skin-treatments/treatments';
 import { treatments as beautyTreatments }  from '../../beauty-treatments/treatments';
-import { treatments as spaTreatments }     from '../../spa-treatments/treatments';
 
 /**
  * All available treatments grouped by category, used to render the
@@ -20,7 +19,6 @@ import { treatments as spaTreatments }     from '../../spa-treatments/treatments
 export const TREATMENT_OPTIONS = {
   'Skin Treatments':   skinTreatments.map(t => t.name),
   'Beauty Treatments': beautyTreatments.map(t => t.name),
-  'Spa Treatments':    spaTreatments.map(t => t.name),
 };
 
 /**

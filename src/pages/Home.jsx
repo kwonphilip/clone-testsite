@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import heroImg from '../images/hero-image.jpg.jpg';
 import skinImg from '../images/home-skin.jpg';
 import beautyImg from '../images/home-beauty.jpg';
-import spaImg from '../images/home-spa.jpg';
 import philosophyImg from '../images/philosophy-section.jpg';
 import './Home.css';
 
@@ -23,14 +22,6 @@ const services = [
     color: 'gold',
     img: beautyImg,
   },
-  {
-    to: '/spa-treatments',
-    icon: '◉',
-    label: 'Spa Treatments',
-    desc: 'Full-body massages, therapeutic wraps, and restorative rituals designed to melt away stress.',
-    color: 'sage',
-    img: spaImg,
-  },
 ];
 
 const features = [
@@ -42,7 +33,7 @@ const features = [
 
 const testimonials = [
   { name: 'Alexandra M.', quote: "The HydraFacial left my skin looking absolutely luminous. I've tried countless places — Rejuvi-Skin is in a class of its own.", service: 'Skin Treatment' },
-  { name: 'Jordan K.', quote: 'I came in for a deep tissue massage and left feeling like a completely different person. The ambiance alone is worth the visit.', service: 'Spa Treatment' },
+  { name: 'Jordan K.', quote: 'The lash lift completely transformed my look — so natural yet so striking. The attention to detail from start to finish was exceptional.', service: 'Beauty Treatment' },
   { name: 'Priya S.', quote: 'My brow tinting and lash lift were done perfectly. The attention to detail here is unmatched. Already booked my next appointment!', service: 'Beauty Treatment' },
 ];
 

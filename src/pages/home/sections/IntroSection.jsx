@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import philosophyImg from '../../../images/philosophy-section.jpg';
+import Reveal from '../../../components/Reveal';
 import './IntroSection.css';
 
 export default function IntroSection() {
   return (
     <section className="section section--alt">
       <div className="container intro">
-        <div className="intro__text">
+        <Reveal className="intro__text">
           <p className="section-label">Our Philosophy</p>
           <h2 className="section-title">Beauty is a feeling,<br />not just a look.</h2>
           <p className="intro__body">
@@ -22,8 +23,8 @@ export default function IntroSection() {
           <Link to="/appointments" className="btn btn--secondary" style={{ marginTop: '1.5rem' }}>
             Start Your Journey
           </Link>
-        </div>
-        <div className="intro__visual">
+        </Reveal>
+        <Reveal delay={150} className="intro__visual">
           <img src={philosophyImg} alt="" className="intro__photo" />
           <div className="intro__stat">
             <span className="intro__stat-num">1,200+</span>
@@ -33,7 +34,7 @@ export default function IntroSection() {
             <span className="intro__stat-num">100%</span>
             <span className="intro__stat-label">Satisfaction Rate</span>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

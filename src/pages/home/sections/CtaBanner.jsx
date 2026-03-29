@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
+import Reveal from '../../../components/Reveal';
 import './CtaBanner.css';
 
 export default function CtaBanner() {
   return (
     <section className="cta-banner">
       <div className="cta-banner__bg" aria-hidden="true" />
-      <div className="container cta-banner__content">
+      <Reveal className="container cta-banner__content">
         <p className="section-label cta-banner__label">Ready to Begin?</p>
         <h2 className="cta-banner__title">Your transformation starts here.</h2>
         <p className="cta-banner__desc">
@@ -20,7 +21,7 @@ export default function CtaBanner() {
             Call Us
           </a>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

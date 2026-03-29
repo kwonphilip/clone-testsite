@@ -1,0 +1,50 @@
+/* ── DECORATIVE SECTION LABELS ──────────────────────
+ * Thin flanking lines on centered section labels,
+ * scoped to the home page only.
+ * ─────────────────────────────────────────────────── */
+.home .section-header--center .section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.home .section-header--center .section-label::before,
+.home .section-header--center .section-label::after {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: var(--color-primary);
+  opacity: 0.45;
+  flex-shrink: 0;
+}
+
+/* ── WAVE DIVIDERS ───────────────────────────────────
+ * Organic wave at the top of alt/accent sections,
+ * biting into the section above for a smooth transition.
+ * ─────────────────────────────────────────────────── */
+.home .section--alt,
+.home .section--accent {
+  position: relative;
+}
+
+.home .section--alt::before {
+  content: '';
+  position: absolute;
+  top: -59px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 1;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'><path d='M0,25 C240,55 480,5 720,30 C960,55 1200,5 1440,25 L1440,60 L0,60 Z' fill='%23EAF0EC'/></svg>") no-repeat center / 100% 100%;
+}
+
+.home .section--accent::before {
+  content: '';
+  position: absolute;
+  top: -59px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 1;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'><path d='M0,25 C240,55 480,5 720,30 C960,55 1200,5 1440,25 L1440,60 L0,60 Z' fill='%23E4EEE8'/></svg>") no-repeat center / 100% 100%;
+}

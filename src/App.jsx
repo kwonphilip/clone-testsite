@@ -1,7 +1,7 @@
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Header from './components/Header';
-import Home from './pages/Home';
+import Home from './pages/home';
 import SkinTreatments from './pages/skin-treatments/SkinTreatments';
 import BeautyTreatments from './pages/beauty-treatments/BeautyTreatments';
 import Appointments from './pages/appointments/Appointments';
